@@ -33,7 +33,19 @@ async function loadPlanetsData() {
     );
   });
 
-  return planets;
+  return planets.map((planet) => {
+    return _.pick(planet, [
+      'koi_prad',
+      'koi_smass',
+      'koi_srad',
+      'kepler_name',
+      'koi_count',
+      'koi_steff',
+    ]);
+  });
 }
 const newEarths = await loadPlanetsData();
+for (const planet of newEarths) {
+  console.log(planet);
+}
 console.log(`${newEarths.length} habitable planets found !`);
